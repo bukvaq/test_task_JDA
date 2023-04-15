@@ -1,0 +1,3 @@
+adjustText==0.8
+matplotlib==3.4.3
+pandas==2.0.0
