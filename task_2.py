@@ -26,8 +26,6 @@ def cleanFilename(sourcestring,  removestring=" %:/,.\\[]<>*?"):
 def main():
     """Создаёт графики по подготовленным данным"""
 
-    min_image_size = 1500
-
     path = "Output/Images"
     if not os.path.exists(path):
         os.makedirs(path)
@@ -67,13 +65,11 @@ def main():
 
         adjust_text(texts_to_adjust)
 
-        output_dpi = min_image_size/min(fig.get_size_inches())
-
         plt.savefig(
             f"Output/Images/{cleanFilename(area_iteration)}.png",
             bbox_extra_artists=(lgd,),
             bbox_inches='tight',
-            dpi=output_dpi
+            dpi=400
         )
 
 
