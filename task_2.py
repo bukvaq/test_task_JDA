@@ -5,16 +5,13 @@ import os
 
 
 def text_cutter(text):
-    """Единожды разбивает входной текст на две строки
-    если длина строки больше 15 символов"""
+    """Разбивает входной текст на строки"""
 
     text_split = text.split()
     total_string = ""
-    check = False
     for i in text_split:
-        if len(total_string)+len(i)+1 >= 15 and check is False:
-            total_string = "\n"+total_string
-            check = True
+        if len(total_string.split("\n")[-1])+len(i)+1 >= 15:
+            total_string = f"{total_string}\n{i}"
         else:
             total_string = f"{total_string} {i}"
     return total_string
@@ -28,6 +25,8 @@ def cleanFilename(sourcestring,  removestring=" %:/,.\\[]<>*?"):
 
 def main():
     """Создаёт графики по подготовленным данным"""
+
+    min_image_size = 1500
 
     path = "Output/Images"
     if not os.path.exists(path):
@@ -68,10 +67,13 @@ def main():
 
         adjust_text(texts_to_adjust)
 
+        output_dpi = min_image_size/min(fig.get_size_inches())
+
         plt.savefig(
             f"Output/Images/{cleanFilename(area_iteration)}.png",
             bbox_extra_artists=(lgd,),
-            bbox_inches='tight'
+            bbox_inches='tight',
+            dpi=output_dpi
         )
 
 
