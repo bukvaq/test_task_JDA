@@ -58,7 +58,7 @@ def main():
                                 fontsize=8)
                 )
             for texts in texts_to_adjust:
-                texts.set_alpha(.8)
+                texts.set_alpha(0.9)
 
         ax.grid(False)
         ax.axis('off')
